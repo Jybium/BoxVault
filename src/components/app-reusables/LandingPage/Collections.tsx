@@ -50,7 +50,7 @@ const Collections = () => {
     const getAllNFTs = async () => {
         const vaultContract = await getContract(NFT_CONTRACT_ADDRESS, NFT_ABI);
         try {
-            const result = await vaultContract.getMyNFTs();
+            const result = await vaultContract.getAllNFTs();
             // const listings = Object.values(result).map((listing: any) => ({
             //   id: listing[0],
             //   lister: listing[1],
