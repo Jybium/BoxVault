@@ -2,7 +2,7 @@
 "use client"
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Playfair_Display } from 'next/font/google'
 import {
     Form,
@@ -28,6 +28,8 @@ import { Button } from '@/components/ui/button';
 import web3Images from "../../../../public/web3-coins.svg"
 import Image from 'next/image';
 import data, { days } from "@/app/constants/collection"
+import getContract from '@/lib/contract';
+import { NFT_ABI, NFT_CONTRACT_ADDRESS } from '@/config';
 
 
 
@@ -44,6 +46,34 @@ const Collections = () => {
     });
 
 
+
+    const getAllNFTs = async () => {
+        const vaultContract = await getContract(NFT_CONTRACT_ADDRESS, NFT_ABI);
+        try {
+            const result = await vaultContract.getAllNFTs();
+            // const listings = Object.values(result).map((listing: any) => ({
+            //   id: listing[0],
+            //   lister: listing[1],
+            //   price: listing[2],
+            //   deadline: listing[3],
+            //   highestBidder: listing[4],
+            //   active: listing[5]
+            // }));
+
+            // console.log(listings);
+            // setActiveListings(listings);
+
+            console.log(result);
+        } catch (error) {
+            console.error('Error fetching listings:', error);
+        }
+    };
+
+    useEffect(() => {
+        getAllNFTs();
+    }, []);
+
+
     const onHandleSubmit = async (data: any) => {
         startTransition(async () => {
             try {
@@ -56,9 +86,9 @@ const Collections = () => {
         });
     };
     return (
-        <div className='text-white mt-5'>
+        <div className='text-white mt-5 pr-5'>
             <h1 className='text-extrabold text-2xl' style={playfair_display.style}>Top Collections</h1>
-            <div className='flex items-center gap-3'>
+            <div className='lg:flex items-center gap-3'>
 
                 <div className='w-auto flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
                     <Image src={web3Images} alt='' className='w-[30%]' />

@@ -23,12 +23,14 @@ const config = {
         background: "#2D2F42",
         hover: "#333651",
         gold:"#FFCB69",
+        deepGold: "#FFCC4D",
+        purple: "#661FFF",
         secondary: "#082235",
         buttons: "#93B7BE52",
         activeBar: "#FFCB6952",
       },
       backgroundImage: {
-        background: "url('/public/background.svg')",
+        "background": "url('/public/background.svg')",
         "carousel-one": "url('/public/carousel-one.png')",
       },
       keyframes: {

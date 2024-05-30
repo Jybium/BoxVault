@@ -1,8 +1,105 @@
 @tailwind base;
   @tailwind components;
   @tailwind utilities;
-  
 
-  body{
-    background-color: "#333651";
-  }
+
+
+.background {
+    /* background-image: url("../../public/background.png"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #2D3047; 
+    /* opacity: 20%; */
+    background-blend-mode: overlay;
+    height: 100%;
+    width: 100%;
+}
+
+
+.bidLayout {
+    background-image: url("../images/carousel-two.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #2D2F42; 
+    background-blend-mode: overlay;
+    height: 100%;
+    width: 100%;
+}
+
+
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+input{
+    color: black;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: space-between;
+    height: calc(100vh - 70px); 
+    width: 50%;
+    background-color: antiquewhite;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel {
+    width: 45%; /* Adjust as needed */
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: scroll 10s linear infinite;
+}
+
+
+
+.item {
+    flex: 1;
+    background-color: #ccc;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+}
+
+.item.current {
+    flex: 7;
+}
+
+.item.prev,
+.item.next {
+    flex: 1;
+    opacity: 0.5;
+}
+
+.item:hover {
+    transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(calc(-100% + 100vh));
+        -webkit-transform: translateY(calc(-100% + 100vh));
+        -moz-transform: translateY(calc(-100% + 100vh));
+        -ms-transform: translateY(calc(-100% + 100vh));
+        -o-transform: translateY(calc(-100% + 100vh));
+}
+}
+
