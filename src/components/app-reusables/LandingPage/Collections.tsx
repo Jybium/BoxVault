@@ -88,7 +88,7 @@ const Collections = () => {
     return (
         <div className='text-white mt-5 pr-5'>
             <h1 className='text-extrabold text-2xl' style={playfair_display.style}>Top Collections</h1>
-            <div className='flex items-center gap-3'>
+            <div className='lg:flex items-center gap-3'>
 
                 <div className='w-auto flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
                     <Image src={web3Images} alt='' className='w-[30%]' />

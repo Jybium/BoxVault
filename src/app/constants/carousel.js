@@ -1,8 +1,8 @@
-import firstImage from "../../../public/carousel-one.png"
-import secondImage from "../../../public/eventCarousel.png"
-import thirdImage from "../../../public/showcaseCarousel.jpeg"
-import fourthImage from "../../../public/creatorCarousel.jpeg"
-import fifthImage from "../../../public/tournamentCarosel.jpg"
+import firstImage from "@/images/carousel-one.jpg"
+import secondImage from "@/images/carousel-one.jpg"
+import thirdImage from "@/images/carousel-two.jpg"
+import fourthImage from "@/images/carousel-three.jpg"
+import fifthImage from "@/images/carousel-four.jpg"
 
 
 const carouselData = [

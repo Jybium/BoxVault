@@ -7,7 +7,7 @@ import { MdGamepad, MdOutlineLiveHelp } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 
 const data = [
-  { id: 1, name: "Home", icon: <RiHome5Line />, to: "/" },
+  { id: 1, name: "Home", icon: <RiHome5Line />, to: "/home" },
   {
     id: 2,
     name: "Marketplace",

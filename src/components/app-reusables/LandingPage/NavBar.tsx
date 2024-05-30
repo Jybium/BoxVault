@@ -25,7 +25,7 @@ const NavBar = () => {
                         {/* Render the first part of the data */}
                         {firstPart.map((item) => (
                             <li key={item.id} className={item.id.toString()}>
-                                <Link href={item.to} className={`flex flex-col items-center text-center gap-1 px-4 py-1 rounded-lg ${currentPath === item.to ? 'bg-gold text-white' : ''
+                                <Link href={item.to} className={`flex flex-col items-center text-center gap-1 px-4 py-1 rounded-lg ${currentPath === item.to ? 'bg-gold text-black' : ''
                                     }`}>
                                     
                                        
@@ -42,7 +42,7 @@ const NavBar = () => {
                         {/* Render the second part of the data */}
                         {secondPart.map((item) => (
                             <li key={item.id} className={item.id.toString()}>
-                                <Link href={item.to} className={`flex flex-col items-center text-center gap-1 py-1 px-4 rounded-lg ${currentPath === item.to ? 'bg-gold text-white' : ''
+                                <Link href={item.to} className={`flex flex-col items-center text-center gap-1 py-1 px-4 rounded-lg ${currentPath === item.to ? 'bg-gold text-black' : ''
                                     }`} >
 
                                         <p className="text-2xl">{item.icon}</p>

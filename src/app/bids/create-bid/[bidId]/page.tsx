@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
-import BidImage from "../../../../../public/bidImage.png"
+import BidImage from "@/images/carousel-one.jpg"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import { NFT_CONTRACT_ADDRESS, NFT_ABI, ERC721_CONTRACT_ADDRESS, ERC721_ABI, ERC20_CONTRACT_ADDRESS, ERC20_ABI } from "@/config"
@@ -28,47 +28,6 @@ export default async function CreateBid({ params }: { params: { bidId: string } 
     const { bidId } = params;
 
     const router = useRouter();
-
-    const executeBid = async (bidId: any) => {
-
-        const vaultContract = await getContract(NFT_CONTRACT_ADDRESS, NFT_ABI);
-        const tokenContract = await getContract(ERC721_CONTRACT_ADDRESS, ERC721_ABI);
-
-        try {
-            // Get bid details
-            const bid = await vaultContract.getBid(bidId);
-            const { tokenId, lister, highestBidder, highestBid } = bid;
-
-            // Check if the contract has approval to transfer the token
-            const approved = await tokenContract.getApproved(tokenId);
-            if (approved !== NFT_CONTRACT_ADDRESS) {
-                // If not approved, approve the contract to transfer the token
-                const approvalTx = await tokenContract.approve(NFT_CONTRACT_ADDRESS, tokenId);
-                // @ts-ignore
-                await approvalTx.wait();
-            }
-
-            const executeBidTx = await vaultContract.executeBid(bidId);
-            const executeBidReceipt = await executeBidTx.wait();
-            // Perform other actions related to bid execution if necessary
-
-            
-            if(!executeBidReceipt){
-                throw new Error("Error executing bid");
-            }
-
-            console.log("Bid executed successfully", executeBidReceipt);
-            // Notify success and route to /events
-            toast.success("Bid executed successfully");
-            router.push("/events");
-
-        } catch (error) {
-            console.error("Error executing bid:", error);
-            toast.error("Error executing bid");
-        }
-    };
-
-
 
 
     const createBid = async () => {
@@ -99,16 +58,12 @@ export default async function CreateBid({ params }: { params: { bidId: string } 
             }
 
             toast.success("Bid created successfully");
-
-            await executeBid(bidId)
-
-            toast.success("Bid created and executed successfully");
             router.push("/events");
 
-        } catch (error) {
+        } catch (error: any) {
 
-            console.error("Error creating or executing bid:", error);
-            toast.error("Error during bid creation or execution");
+            console.error("Error creating bid:", error);
+            toast.error("Error during bid creation:" + error.message);
 
         }
     };

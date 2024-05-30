@@ -30,7 +30,7 @@ export function DropdownMenuModal() {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild className="hidden lg:grid">
                 <FaBell color='#FFCB69' size={23}  />
             </DropdownMenuTrigger>
 

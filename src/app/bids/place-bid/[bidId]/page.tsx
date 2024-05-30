@@ -13,10 +13,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
-import BidImage from "../../../../../public/bidImage.png"
+import BidImage from "@/images/carousel-one.jpg"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
-import { ERC20_ABI, ERC20_CONTRACT_ADDRESS, NFT_ABI, NFT_CONTRACT_ADDRESS } from "@/config"
+import { ERC20_ABI, ERC20_CONTRACT_ADDRESS, ERC721_ABI, ERC721_CONTRACT_ADDRESS, NFT_ABI, NFT_CONTRACT_ADDRESS } from "@/config"
 import getContract from "@/lib/contract"
 import { ethers } from "ethers"
 
@@ -27,6 +27,45 @@ export default function PlaceBid({ params }: { params: { bidId: string } }) {
   const { bidId } = params
 
   const router = useRouter()
+
+  const executeBid = async (bidId: any) => {
+
+    const vaultContract = await getContract(NFT_CONTRACT_ADDRESS, NFT_ABI);
+    const tokenContract = await getContract(ERC721_CONTRACT_ADDRESS, ERC721_ABI);
+
+    try {
+      // Get bid details
+      const bid = await vaultContract.getBid(bidId);
+      const { tokenId, lister, highestBidder, highestBid } = bid;
+
+      // Check if the contract has approval to transfer the token
+      const approved = await tokenContract.getApproved(tokenId);
+      if (approved !== NFT_CONTRACT_ADDRESS) {
+        // If not approved, approve the contract to transfer the token
+        const approvalTx = await tokenContract.approve(NFT_CONTRACT_ADDRESS, tokenId);
+        // @ts-ignore
+        await approvalTx.wait();
+      }
+
+      const executeBidTx = await vaultContract.executeBid(bidId);
+      const executeBidReceipt = await executeBidTx.wait();
+      // Perform other actions related to bid execution if necessary
+
+
+      if (!executeBidReceipt) {
+        throw new Error("Error executing bid");
+      }
+
+      console.log("Bid executed successfully", executeBidReceipt);
+      // Notify success and route to /events
+      toast.success("Bid executed successfully");
+    
+
+    } catch (error) {
+      console.error("Error executing bid:", error);
+      toast.error("Error executing bid");
+    }
+  };
 
 
 
@@ -67,8 +106,15 @@ export default function PlaceBid({ params }: { params: { bidId: string } }) {
       toast.success(`Placed bid of ${ethers.formatUnits(price, "ether")} ETH on listing ${tokenId}`);
       console.log(`Placed bid of ${ethers.formatUnits(price, "ether")} ETH on listing ${tokenId}`);
 
+
+      setTimeout(() => {
+        toast.success("Execcuting bid ...")}, 3000)
+
+        await executeBid(bidId)
       // Redirect to events page
-      router.push(`/leaderboard/${tokenId}`);
+
+      setTimeout(() => {
+      router.push(`/leaderboard/${tokenId}`)}, 5000)
     } catch (error: any) {
       console.error("Error placing bid:", error);
 

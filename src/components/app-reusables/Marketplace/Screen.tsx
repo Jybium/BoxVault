@@ -86,9 +86,9 @@ const Screen = () =>{
             <h1 className='text-extrabold text-2xl' style={playfair_display.style}>Explore our marketplace</h1>
 
 
-            <div className='flex items-center gap-3'>
+            <div className='lg:flex items-center gap-3'>
 
-                <div className='w-auto lg:flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
+                <div className='w-auto flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
                     <Image src={web3Images} alt='' className='w-[30%]' />
                     <div className=''>
                         <Form {...form}>
@@ -140,9 +140,9 @@ const Screen = () =>{
             </div>
 
 
-            <div className='lg:flex items-center lg:justify-between mt-2'>
+            <div className='lg:flex items-center lg:justify-between mt-4 lg:mt-2'>
                     <p className=""># Marketplace</p>
-                    <div className="flex gap-x-2">
+                <div className="grid grid-flow-row grid-cols-2 lg:grid-cols-4 gap-1">
                         <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style} onClick={() => setData('jersey')}>Iconic jerseys</p>
                     <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style} onClick={() => setData('trophy')}>Trophies</p>
                     <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style} onClick={() => setData('moment')}>Moments</p>
@@ -151,7 +151,7 @@ const Screen = () =>{
             </div>
 
 
-            <div className='mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5 '>
+            <div className='mt-4 grid grid-cols-1 lg:grid-cols-4 justify-between gap-y-6 gap-x-5 '>
                 {items.map((item: Item) => (
                     <MarketModal key={item.id} id={item.id} image={item.imageURL} text={item.title} name={item.name} />
                 ))}

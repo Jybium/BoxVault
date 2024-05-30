@@ -1,0 +1,71 @@
+.carouselContainer {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  width: 50%;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carouselInner {
+  width: 100%;
+  height: 150%; /* Three times the view height */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.5s ease; /* Added transition property */
+}
+
+
+.masonryGrid {
+  column-count: 2; /* Adjust the number of columns as needed */
+  column-gap: 20px;
+}
+
+.masonryItem {
+  break-inside: avoid;
+  margin-bottom: 20px;
+}
+
+
+
+.item {
+  width: 100%;
+  height: 20%;
+  transition: transform 0.5s ease, opacity 0.5s ease, height 0.5s ease;
+  background-color: #ccc;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item.current {
+  transform: scale(1.15);
+  height: 60%;
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
+}
+
+.item.prev,
+.item.next {
+  height: 15%;
+  opacity: 0.2;
+}
+
+.item:hover {
+  transform: scale(1.10);
+  -webkit-transform: scale(1.10);
+  -moz-transform: scale(1.10);
+  -ms-transform: scale(1.10);
+  -o-transform: scale(1.10);
+}

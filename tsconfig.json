@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/app-reusables/contest/Timer.jsx", "src/components/app-reusables/contest/Question.jsx", "src/components/app-reusables/contest/Quiz.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/app-reusables/contest/Timer.jsx", "src/components/app-reusables/contest/Question.jsx", "src/components/app-reusables/contest/Quiz.jsx", "src/components/app-reusables/connect/Carousel.jsx", "src/components/app-reusables/connect/ConnectWallet.jsx"],
   "exclude": ["node_modules"]
 }

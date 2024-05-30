@@ -112,7 +112,7 @@ export function DialogCloseButton<Props = {}>({ onConnect }: { onConnect: (walle
                     <DialogHeader className="grid justify-center my-2">
                         <Image src={logo} alt="metamask icon" className="h-40 w-40 rounded-full " />
                     </DialogHeader>
-                    <p className="text-white tracking-wider text-center text-lg">Connect to SoccerVault</p>
+                    <p className="text-white tracking-wider text-center text-lg">Connect to BoxVault</p>
                     <div className="grid items-center bg-secondary text-white tracking-wide rounded-lg">
                         <span className="flex gap-4 items-center px-5 py-2 relative hover:bg-gold hover:text-black hover:font-bold cursor-pointer" onClick={connectMetaMask}>
                             <Image src={metamask} alt="metamask icon" className="h-12 w-12 rounded-full" />

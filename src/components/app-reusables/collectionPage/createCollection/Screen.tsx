@@ -209,35 +209,48 @@ const Screen = () => {
 
 
       {/* ACTUAL FORM FOR CREATING THE NFT - COLLECTING THE DETAILS */}
-      <section className="">
+      <section className="lg:flex justify-between mt-5">
 
-        <div className='md:flex items-start space-x-4'>
+        <div className='md:flex items-center space-x-4'>
           <div className="space-y-3">
-            <div className="grid">
 
-            <label htmlFor="fileInput">Logo image</label>
-            <input type="file" id="fileInput" className='h-40 w-40 bg-slate-400' onChange={handleFileChange} />
+            <div className="md:flex items-end space-x-4">
+              <div className="">
+
+                <label htmlFor="fileInput">Logo image</label>
+                <div className="relative grid">
+
+                  <div className="absolute top-0 left-0 h-full w-full bg-white/10 rounded-lg grid content-center z-30 ">
+                    <div className='space-y-1 text-xs text-center'>
+                      <p className='text-base'>Drag and drop media</p>
+                      <p className="text-gold font-bold text-base">Browse media</p>
+                      <p className="">Max size 50MB</p>
+                      <p>JPG, PNG, GIF, SVG, Mp4 </p>
+                    </div>
+                  </div>
+                  <input type="file" id="fileInput" className='relative h-60 w-60 opacity-0 rounded-lg z-40' onChange={handleFileChange} />
+                </div>
+              </div>
+
+
+              {/* Image container */}
+              
+              {imageUrl && (
+                <div className="m">
+                  <Image src={imageUrl} alt="Chosen Image" width={160} height={160} className="h-60 w-60 rounded-lg" />
+                </div>
+              )}
             </div>
-            <div className='space-y-1'>
-              <p>Drag and drop media</p>
-              <p className="">Browse media</p>
-              <p className="">Max size 50MB</p>
-              <p>JPG, PNG, GIF, SVG, Mp4 </p>
-            </div>
+           
           </div>
-          {/* Image container */}
-          {imageUrl && (
-            <div className="m">
-              <Image src={imageUrl} alt="Chosen Image" width={160} height={160} className="h-40 w-40" />
-            </div>
-          )}
+
         </div>
 
 
-        <div className="md:w-5/6 mt-5">
+        <div className="md:w-2/5 mt-5">
 
           <Form {...form}>
-            <form className='flex justify-between items-end' onSubmit={form.handleSubmit(onHandleSubmit, (errors) => {
+            <form className='w-full grid gap-y-4' onSubmit={form.handleSubmit(onHandleSubmit, (errors) => {
               onSubmitError(errors);
             })}>
               <FormField
@@ -249,7 +262,7 @@ const Screen = () => {
                     <FormControl>
                       <Input
                         type="price"
-                        className='text-primary'
+                        className='text-primary w-full'
                         placeholder="Enter the listing price"
                         {...field}
                       />
@@ -268,7 +281,7 @@ const Screen = () => {
                       <Input
                         type="number"
                         placeholder="Enter the listing duration"
-                        className='text-primary'
+                        className='text-primary mt-7'
                         {...field}
                       />
                     </FormControl>

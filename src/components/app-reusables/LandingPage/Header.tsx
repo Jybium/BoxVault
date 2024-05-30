@@ -17,7 +17,7 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 import { DialogCloseButton } from './ConnectWalletModal';
 import { DropdownMenuModal } from './NotificationModal';
 import { useModal } from "@/app/stores/context/modal";
-import Logo from "../../../../public/soccervault_logo.png"
+import Logo from "../../../../public/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -54,12 +54,12 @@ const Header = () => {
     <div className='flex justify-between items-center bg-primary px-5 py-3 fixed w-full z-30 shadow-lg drop-shadow-lg'>
       <Link href="/">
 
-      <h1 className='text-2xl text-white font-extrabold flex gap-x-3 items-center'><Image src={Logo} alt='soccervault logo' className='object-contain'/> SoccerVault</h1>
+      <h1 className='text-lg lg:text-xl text-white font-extrabold flex gap-x-3 items-center'><Image src={Logo} alt='soccervault logo' className='object-contain w-12 h-12'/> BoxVault</h1>
       </Link>
-      <div className='relative w-1/3'>
+      {/* <div className='relative w-1/3'>
         <Input type='text' placeholder='Search for NFTs, Collection or users' className='bg-buttons border-0 outline-0 pl-10 w-full focus:border-0 focus:outline-0 active:border-0 active:outline-0' />
         <Search className='absolute top-2 left-3' color='white' />
-      </div>
+      </div> */}
       <div className='flex items-center gap-7'>
         <DropdownMenuModal />
         <DialogCloseButton onConnect={onConnect} />

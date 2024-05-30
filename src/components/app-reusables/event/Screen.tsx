@@ -10,6 +10,8 @@ import { NFT_ABI, NFT_CONTRACT_ADDRESS } from '@/config';
 import eventData from "@/app/constants/eventData";
 import { ethers } from 'ethers';
 import formatUnixTimestamp from "@/services/formatDate"
+import Carousel from '../connect/Carousel';
+
 
 const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "400" });
 
@@ -26,10 +28,12 @@ interface Listing {
 const Screen = () => {
     const [activeListings, setActiveListings] = useState<Listing[]>([]);
     const [collection, setCollection] = useState(1);
+    const [loading, setLoading] = useState(false);
 
     const getAllListings = async () => {
         const vaultContract = await getContract(NFT_CONTRACT_ADDRESS, NFT_ABI);
         try {
+            setLoading(true);
             const result = await vaultContract.getAllListings();
             const listings: Listing[] = Object.values(result).map((listing: any) => ({
                 id: listing[0],
@@ -42,8 +46,12 @@ const Screen = () => {
 
             console.log(listings);
             setActiveListings(listings);
+
+            setLoading(false);
         } catch (error) {
             console.error('Error fetching listings:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -53,7 +61,8 @@ const Screen = () => {
 
     // Merge eventData and activeListings
 
-    if(activeListings.length === 0) return <div className='text-2xl text-white text-center grid justify-center content-center'>Loading...</div>;
+    if(activeListings.length === 0) return <div className='text-2xl text-white text-center grid justify-center content-center'>No Active Events yet ...</div>;
+    if(loading) return <div className='text-2xl text-white text-center grid justify-center content-center'>Loading ...</div>;
     
     const mergedData = eventData.events.map(event => {
         const listing = activeListings.find(listing => Number(listing.id) === event.id);
@@ -88,6 +97,8 @@ const Screen = () => {
     return (
         <div className='text-white'>
             <h1 className='text-extrabold text-2xl' style={playfair_display.style}>Top Events</h1>
+
+            <Carousel/>
             <div className="relative w-full h-full">
                 <div className={` ${collection === 0 ? "opacity-20" : ""} relative mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5`}>
                     {mergedData.map((item: any) => (

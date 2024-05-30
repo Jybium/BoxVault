@@ -1,6 +1,6 @@
-import firstImage from "../../../public/bidImage.png";
-import secondImage from "../../../public/bid1.png";
-import thirdImage from "../../../public/bid2.png";
+import firstImage from "@/images/kit4.jpg";
+import secondImage from "@/images/b12.png";
+import thirdImage from "@/images/b10.png";
 
 const images = {
   firstImage: firstImage,

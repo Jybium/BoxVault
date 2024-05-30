@@ -86,9 +86,9 @@ const Screen = () => {
             <h1 className='text-extrabold text-2xl' style={playfair_display.style}>Your collections</h1>
 
 
-            <div className='flex justify-between items-center gap-3 w-full'>
+            <div className='lg:flex lg:justify-between items-center gap-3 w-full'>
 
-                <div className="flex items-center gap-3">
+                <div className="lg:flex items-center gap-3">
 
                     <div className='w-auto flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
                         <Image src={web3Images} alt='' className='w-[30%]' />
@@ -153,9 +153,9 @@ const Screen = () => {
             </div>
 
 
-            <div className='flex items-center justify-between mt-2'>
+            <div className='lg:flex items-center lg:justify-between mt-2'>
                 <p className=""># Collections</p>
-                <div className="flex gap-1">
+                <div className="grid grid-flow-row grid-cols-2 lg:grid-cols-4 gap-1">
                     <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Iconic jerseys</p>
                     <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Trophies</p>
                     <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Moments</p>
@@ -166,7 +166,7 @@ const Screen = () => {
             <div className="relative w-full h-full">
 
 
-                <div className={` ${collection === 0 ? "opacity-20" : ""} relative mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5`}>
+                <div className={` ${collection === 0 ? "opacity-20" : ""} relative mt-4 grid grid-cols-1 lg:grid-cols-4 justify-between gap-5`}>
                     {items.map((item: Item) => (
                         <MarketModal key={item.id} id={item.id} image={item.imageURL} text={item.title} name={item.name} />
                     ))}
