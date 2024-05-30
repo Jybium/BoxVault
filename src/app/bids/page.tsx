@@ -11,7 +11,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image"
-import BidImage from "../../../public/bidImage.png"
+import BidImage from "@/images/carousel-one.jpg"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 

@@ -108,7 +108,7 @@ export default function PlaceBid({ params }: { params: { bidId: string } }) {
 
 
       setTimeout(() => {
-        toast.success("Execcuting bid ...")}, 3000)
+        toast.success("Executing bid ...")}, 3000)
 
         await executeBid(bidId)
       // Redirect to events page
